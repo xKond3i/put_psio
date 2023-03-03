@@ -15,7 +15,7 @@ using namespace std;
 
 int ask_for_number(string q) {
     string ans;
-    int ans_int = 0;
+    int ans_int;
     bool flag = true;
     do {
         cout << q;
@@ -24,7 +24,7 @@ int ask_for_number(string q) {
             ans_int = stoi(ans);
             flag = false;
         } catch(...) {
-            // Example doesn't need specific error handling
+            // example doesn't need specific error handling
         }
     } while (flag);
     return ans_int;
@@ -82,8 +82,13 @@ uint64_t factorial_r(int n) {
 #pragma region Zadanie 5
 bool is_prime(int x) {
     if (x <= 1) return false;
-    int range_max = x / 2 + 1; // the other half of dividers will be mirrored i.e. 36 / 2 = 18 and 32 / 18 = 2
-    for (int i = 2; i < range_max; ++i) {
+    // 1) there won't be any integer dividers greater than half of a number,
+    //    because 2 is the smallest integer divider - `(x / 2)` will be the greatest divider
+    // 2) dividers come in pairs (i.e. 36 / 2 = 18, so we get pair of (2, 18)),
+    //    moreover dividers greater than `sqrt(x)` will be paired with ones found before crossing `sqrt(x)`
+    //    and that's why we can shrink our looking area to range of `<2; sqrt(x)>`
+    int range_max = sqrt(x);
+    for (int i = 2; i <= range_max; ++i) {
         if (x % i == 0) return false;
     }
     return true;
@@ -110,7 +115,36 @@ double pi_leibniz(double precision) {
 
 // 🛠 Zadanie 7: rysowanie kwadratu
 #pragma region Zadanie 7
-//// TBC
+void draw_square(int dim, bool left_diagonal = false, bool right_diagonal = false) {
+    for (int x = 1; x <= dim; ++x) {
+        for (int y = 1; y <= dim; ++y) {
+            if      (x == 1 || x == dim)                 cout << "#"; // horizontal borders
+            else if (y == 1 || y == dim)                 cout << "#"; // vertical borders
+            else if (x == y && left_diagonal)            cout << "#"; // left diagonal
+            else if (dim - x == y - 1 && right_diagonal) cout << "#"; // right diagonal
+            else cout << " ";
+        }
+        cout << "\n";
+    }
+}
+#pragma endregion
+
+// 🛠 Zadanie 8: NWD - algorytm Euklidesa
+#pragma region Zadanie 8
+int gcd(int a, int b) {
+    /*
+    1. oblicz c jako resztę z dzielenia a przez b
+    2. zastąp a liczbą b, następnie b liczbą c
+    3. jeżeli wartość b wynosi 0, to a jest szukaną wartością NWD, w przeciwnym wypadku przejdź do kroku 1
+    */
+    int c;
+    while (b != 0) {
+        c = a % b;
+        a = b;
+        b = c;
+    }
+    return a;
+}
 #pragma endregion
 
 int main() {
@@ -130,7 +164,7 @@ int main() {
             if (ans_int < 1 || ans_int > 10) throw "out of range";
             flag = false;
         } catch(...) {
-            // Example doesn't need specific error handling
+            // example doesn't need specific error handling
         }
     } while (flag);
     const int n = ans_int;
@@ -206,7 +240,18 @@ int main() {
     // 🛠 Zadanie 7: rysowanie kwadratu
     cout << "\nZadanie 7: rysowanie kwadratu\n";
     #pragma region Zadanie 7
-    //// TBC
+    draw_square(4);
+    draw_square(6, true, false);
+    draw_square(7, true, true);
+    #pragma endregion
+
+    // 🛠 Zadanie 8: NWD - algorytm Euklidesa
+    cout << "\nZadanie 8: NWD - algorytm Euklidesa\n";
+    #pragma region Zadanie 8
+    int p = 36;
+    int q = 24;
+    int nwd = gcd(p, q);
+    cout << "NWD(" << p << ", " << q << ") = " << nwd << "\n";
     #pragma endregion
 
     return 0;
