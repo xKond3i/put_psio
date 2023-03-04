@@ -82,15 +82,23 @@ uint64_t factorial_r(int n) {
 #pragma region Zadanie 5
 bool is_prime(int x) {
     if (x <= 1) return false;
+
+    // Zastanów się jak można przyspieszyć przeszukiwanie zakresu - czy jakieś liczby można łatwo pominąć?
+    // -> basically every even number except of 2 is not a prime.
+    if (x == 2) return true;
+    if (x % 2 == 0) return false;
+
     // 1) there won't be any integer dividers greater than half of a number,
     //    because 2 is the smallest integer divider - `(x / 2)` will be the greatest divider
     // 2) dividers come in pairs (i.e. 36 / 2 = 18, so we get pair of (2, 18)),
     //    moreover dividers greater than `sqrt(x)` will be paired with ones found before crossing `sqrt(x)`
     //    and that's why we can shrink our looking area to range of `<2; sqrt(x)>`
     int range_max = sqrt(x);
-    for (int i = 2; i <= range_max; ++i) {
+
+    for (int i = 3; i <= range_max; ++i) {
         if (x % i == 0) return false;
     }
+
     return true;
 }
 #pragma endregion
@@ -99,15 +107,14 @@ bool is_prime(int x) {
 #pragma region Zadanie 6
 double pi_leibniz(double precision) {
     double pi_approx = 1;
-    double div = 3;
+    double div = 1;
     double next = 1;
-    int it = 0;
+    int i = 1;
     while (next > precision) {
-        next = (1 / div);
-        if (it % 2 == 0) pi_approx -= next;
-        else pi_approx += next;
-        div += 2;
-        ++it;
+        div = i * 2 + 1;                // odd number formula
+        next = 1 / div;                 // next sequence term
+        pi_approx += pow(-1, i) * next; // +- another odd inverse number
+        ++i;
     }
     return pi_approx * 4;
 }
