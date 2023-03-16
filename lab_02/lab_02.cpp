@@ -12,6 +12,7 @@
 #include <fstream>
 #include <sstream>
 #include <limits>
+#include <math.h>
 
 #include <windows.h> // UTF-8 encoding for Windows
 
@@ -440,6 +441,84 @@ double get_temp_max(vector<WeatherData> data) {
 }
 #pragma endregion
 
+// 🛠 Zadanie 10: Znajdywanie miejsca zerowe wielomianu metodą bisekcji
+#pragma region TASK 10
+vector<double> get_poly(int n);
+double poly(double x, vector<double> & p);
+vector<double> zero(double x_min, double x_max, vector<double> & p, double step); 
+double zero_r(double bottom, double top, vector<double> & p);
+
+void task_10() {
+    cout << "\n\n\n--- TASK 10 ---\n";
+    double n, x = 1;
+    cout << "Podaj ilość wspolczynników wielomianu: "; cin >> n;
+    
+    std::vector<double> p = get_poly(n);
+    double res = poly(x, p);
+
+    cout << "y(" << x << ") = " << res << "\n";
+    double x_min, x_max, step;
+    cout << "Podaj dolny zakres poszukiwań: "; cin >> x_min;
+    cout << "Podaj górny zakres poszukiwań: "; cin >> x_max;
+    cout << "Podaj krok: ";                    cin >> step;
+
+    vector<double> zeros = zero(x_min, x_max, p, step); // p example: {0.07, 0, -1, 1} (result: {-0.237806, 0.321106, 0.9167})
+    // oraz funkcja pomocnicza
+    //// double x = zero_r(x1, x1 + step, p);
+
+    cout << zeros << "\n";
+}
+
+vector<double> get_poly(int n) {
+    vector<double> p(n);
+    for (int i = 0; i < n; ++i) {
+        cout << "Podaj wspolczynnik dla x^" << i << ": ";
+        cin >> p[i];
+    }
+    return p;
+}
+
+double poly(double x, std::vector<double> & p) {
+    // y(x) = p[0] + p[1] * x + p[2] * x^2 + ... + p[n] * x^n;
+    double y = 0, n = p.size() - 1;
+    for (int i = 0; i <= n; ++i)
+        y += p[i] * pow(x, i);
+    return y;
+}
+
+vector<double> zero(double x_min, double x_max, vector<double> & p, double step) {
+    vector<double> zeros;
+    double y_prev;
+    for (double x = x_min; x <= x_max; x += step) {
+        double y = poly(x, p); // calc y
+
+        // check if we got a root
+        if (y == 0) zeros.push_back(x);                // we've hit the zero!
+        if ((x != x_min) && ((y < 0) != (y_prev < 0))) // except first record (it doesn't have predecesor and thus - sign was not changed)
+            zeros.push_back(zero_r(x - step, x, p));
+
+        y_prev = y;
+    }
+    return zeros;
+}
+
+double zero_r(double bottom, double top, vector<double> & p) {
+    // approx root
+    double epsilon = 1e-9;
+    // cout << "search area: <" << bottom << "; " << top << ">\n";
+    double x_mid = (top + bottom) / 2.0;
+    double y_mid = poly(x_mid, p);
+    if (y_mid == 0 || ((top - bottom) < epsilon)) return x_mid;
+
+    double y_bottom = poly(bottom, p);
+    double y_top = poly(top, p);
+    if ((y_bottom < 0) != (y_mid < 0)) return zero_r(bottom, x_mid, p); // y(bottom) and y(mid) do not share common sign - root between
+    if    ((y_mid < 0) != (y_top < 0)) return zero_r(x_mid, top, p);    // y(mid) and y(top) do not share common sign - root between
+
+    return x_mid; // default case
+}
+#pragma endregion
+
 int main() {
     SetConsoleOutputCP(CP_UTF8);
 
@@ -448,15 +527,16 @@ int main() {
     cout << "Executed by Konrad Ceglarski\n";
     cout << "12/03/2023\n";
 
-    task_1(); // 🛠 Zadanie 1: Palindrom
-    task_2(); // 🛠 Zadanie 2: Znalezienie wszystkich wystąpień znaku
-    task_3(); // 🛠 Zadanie 3: Szukanie najdłuższego wyrazu
-    task_4(); // 🛠 Zadanie 4: Podział napisów
-    task_5(); // 🛠 Zadanie 5: Znajdź i zamień
-    task_6(); // 🛠 Zadanie 6: Sortowanie bąbelkowe
-    task_7(); // 🛠 Zadanie 7: Przeszukiwanie binarne
-    task_8(); // 🛠 Zadanie 8: Kursy walut
-    task_9(); // 🛠 Zadanie 9: Temperatury
+    task_1();  // 🛠 Zadanie 1: Palindrom
+    task_2();  // 🛠 Zadanie 2: Znalezienie wszystkich wystąpień znaku
+    task_3();  // 🛠 Zadanie 3: Szukanie najdłuższego wyrazu
+    task_4();  // 🛠 Zadanie 4: Podział napisów
+    task_5();  // 🛠 Zadanie 5: Znajdź i zamień
+    task_6();  // 🛠 Zadanie 6: Sortowanie bąbelkowe
+    task_7();  // 🛠 Zadanie 7: Przeszukiwanie binarne
+    task_8();  // 🛠 Zadanie 8: Kursy walut
+    task_9();  // 🛠 Zadanie 9: Temperatury
+    task_10(); // 🛠 Zadanie 10: Znajdywanie miejsca zerowe wielomianu metodą bisekcji
 
     return 0;
 }
