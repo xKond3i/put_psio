@@ -4,6 +4,8 @@
 // Executed by Konrad Ceglarski
 // 12/03/2023
 
+// INCLUSIONS
+#pragma region INCLUSIONS
 #include <iostream>
 #include <string>
 #include <algorithm>
@@ -15,6 +17,7 @@
 #include <math.h>
 
 #include <windows.h> // UTF-8 encoding for Windows
+#pragma endregion
 
 using namespace std;
 
