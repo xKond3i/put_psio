@@ -15,7 +15,7 @@ using namespace std;
 
 #pragma region TASK 1
 void task_1() {
-    cout << "\n\n\n--- TASK 1 ---\n";
+    cout << "\n--- TASK 1 ---\n";
     
 }
 #pragma endregion

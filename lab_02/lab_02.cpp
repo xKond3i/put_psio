@@ -1,5 +1,5 @@
 // PSiO at Poznan University Of Technology
-// Laboratory 02
+// Laboratory 2
 // Source: https://jug.dpieczynski.pl/lab-psio/Lab%2002%20-%20Algorytmy.html
 // Executed by Konrad Ceglarski
 // 12/03/2023
@@ -38,7 +38,7 @@ ostream& operator << (ostream& os, vector<T> vec) {
 bool is_palindrome(string word);
 
 void task_1() {
-    cout << "\n\n\n--- TASK 1 ---\n";
+    cout << "\n--- TASK 1 ---\n";
     std::string word = "racecar";
     if (is_palindrome(word)) {
         std::cout << "To palindrom!" << std::endl;
@@ -332,7 +332,7 @@ void task_8() {
         else if (sorted_by_usd[shot].usd < search) searching_bound_min = shot + 1;
         else if (sorted_by_usd[shot].usd > search) searching_bound_max = shot - 1;
     }
-    cout << "Kurs USD wynosił 3.9011PLN w dniu: " << sorted_by_usd[found].date << "\n";
+    cout << "\nKurs USD wynosił 3.9011PLN w dniu: " << sorted_by_usd[found].date << "\n";
 }
 
 vector<Exchange_rate> sort_usd(vector<Exchange_rate> rates) {
@@ -459,7 +459,7 @@ void task_10() {
     std::vector<double> p = get_poly(n);
     double res = poly(x, p);
 
-    cout << "y(" << x << ") = " << res << "\n";
+    cout << "\ny(" << x << ") = " << res << "\n\n";
     double x_min, x_max, step;
     cout << "Podaj dolny zakres poszukiwań: "; cin >> x_min;
     cout << "Podaj górny zakres poszukiwań: "; cin >> x_max;
@@ -469,7 +469,7 @@ void task_10() {
     // oraz funkcja pomocnicza
     //// double x = zero_r(x1, x1 + step, p);
 
-    cout << zeros << "\n";
+    cout << "Miejsca zerowe: " << zeros << "\n";
 }
 
 vector<double> get_poly(int n) {
@@ -526,7 +526,7 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 
     cout << "PSiO at Poznan University Of Technology\n";
-    cout << "Laboratory 02\n";
+    cout << "Laboratory 2\n";
     cout << "Executed by Konrad Ceglarski\n";
     cout << "12/03/2023\n";
 
