@@ -466,7 +466,7 @@ void task_10() {
     cout << "Podaj krok: ";                    cin >> step;
 
     vector<double> zeros = zero(x_min, x_max, p, step); // p example: {0.07, 0, -1, 1} (result: {-0.237806, 0.321106, 0.9167})
-    // oraz funkcja pomocnicza
+    // oraz funkcja pomocnicza                          // p example: {-1, 0, 1} (result: {-1, 1})
     //// double x = zero_r(x1, x1 + step, p);
 
     cout << "Miejsca zerowe: " << zeros << "\n";
@@ -491,13 +491,13 @@ double poly(double x, std::vector<double> & p) {
 
 vector<double> zero(double x_min, double x_max, vector<double> & p, double step) {
     vector<double> zeros;
-    double y_prev;
+    double y_prev = 0;
     for (double x = x_min; x <= x_max; x += step) {
         double y = poly(x, p); // calc y
 
         // check if we got a root
-        if (y == 0) zeros.push_back(x);                // we've hit the zero!
-        if ((x != x_min) && ((y < 0) != (y_prev < 0))) // except first record (it doesn't have predecesor and thus - sign was not changed)
+        if (y == 0) zeros.push_back(x);                  // we've hit the zero!
+        else if (y_prev != 0 && (y < 0) != (y_prev < 0)) // except first record (it doesn't have predecesor and thus - sign was not changed)
             zeros.push_back(zero_r(x - step, x, p));
 
         y_prev = y;
