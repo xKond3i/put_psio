@@ -532,7 +532,7 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 
     cout << "PSiO at Poznan University Of Technology\n";
-    cout << "Laboratory 03\n";
+    cout << "Laboratory 3\n";
     cout << "Executed by Konrad Ceglarski\n";
     cout << "18/03/2023\n";
 
