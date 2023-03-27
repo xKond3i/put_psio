@@ -48,6 +48,13 @@
         "fstream": "cpp",
         "sstream": "cpp",
         "random": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "regex": "cpp",
+        "locale": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp",
+        "xtree": "cpp"
     }
 }

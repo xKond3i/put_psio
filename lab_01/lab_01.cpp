@@ -1,5 +1,5 @@
 // PSiO Poznan University Of Technology
-// Laboratory 1
+// Laboratory 01
 // Source: https://jug.dpieczynski.pl/lab-psio/Lab%2001%20-%20Proste%20algorytmy%2c%20vector.html
 // Executed by Konrad Ceglarski
 // 01/03/2023
@@ -250,7 +250,7 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 
     cout << "PSiO at Poznan University Of Technology\n";
-    cout << "Laboratory 1\n";
+    cout << "Laboratory 01\n";
     cout << "Executed by Konrad Ceglarski\n";
     cout << "01/03/2023\n";
 

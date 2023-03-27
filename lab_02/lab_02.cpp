@@ -1,5 +1,5 @@
 // PSiO at Poznan University Of Technology
-// Laboratory 2
+// Laboratory 02
 // Source: https://jug.dpieczynski.pl/lab-psio/Lab%2002%20-%20Algorytmy.html
 // Executed by Konrad Ceglarski
 // 12/03/2023
@@ -496,8 +496,8 @@ vector<double> zero(double x_min, double x_max, vector<double> & p, double step)
         double y = poly(x, p); // calc y
 
         // check if we got a root
-        if (y == 0) zeros.push_back(x);                  // we've hit the zero!
-        else if (y_prev != 0 && (y < 0) != (y_prev < 0)) // except first record (it doesn't have predecesor and thus - sign was not changed)
+        if (y == 0) zeros.push_back(x);                    // we've hit the zero!
+        else if (y_prev != 0 && ((y < 0) != (y_prev < 0))) // except first record (it doesn't have predecesor and thus - sign was not changed)
             zeros.push_back(zero_r(x - step, x, p));
 
         y_prev = y;
@@ -526,7 +526,7 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 
     cout << "PSiO at Poznan University Of Technology\n";
-    cout << "Laboratory 2\n";
+    cout << "Laboratory 02\n";
     cout << "Executed by Konrad Ceglarski\n";
     cout << "12/03/2023\n";
 
