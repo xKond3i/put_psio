@@ -1,5 +1,8 @@
 #pragma once
 
+#include <map>
+#include <vector>
+
 class Histogram
 {
     std::map<int, int> bins_;

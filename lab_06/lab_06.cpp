@@ -8,6 +8,8 @@
 #pragma region INCLUSIONS
 #include <iostream>
 
+#include "histogram.h"
+
 #include <windows.h> // UTF-8 encoding for Windows
 #pragma endregion
 
@@ -17,7 +19,7 @@ using namespace std;
 #pragma region TASK 1
 void task_1() {
     cout << "\n--- TASK 1 ---\n";
-    
+    // TBC
 }
 #pragma endregion
 
