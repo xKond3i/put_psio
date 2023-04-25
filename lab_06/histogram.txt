@@ -1,0 +1,3 @@
+John: 3
+Konrad: 1
+Maria: 2

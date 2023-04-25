@@ -57,6 +57,9 @@
         "xloctime": "cpp",
         "xtree": "cpp",
         "map": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "any": "cpp",
+        "*.tpp": "cpp",
+        "complex": "cpp"
     }
 }

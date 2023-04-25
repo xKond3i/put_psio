@@ -68,8 +68,8 @@ void task_final() {
     for (auto it = data.begin(); it < data.end(); ++it) {
         const auto & [word, count] = *it;
         int pos = it - data.begin();
-        if (pos < 26) cout << " " << (pos+1) << ". " << word << ": " << count << "\n";
-        else if (pos == 26) cout << "and " << (data.end() - it) << " more...\n";
+        if (pos < results_count) cout << " " << (pos+1) << ". " << word << ": " << count << "\n";
+        else if (pos == results_count) cout << "and " << (data.end() - it) << " more...\n";
         fo << word << ": " << count << "\n";
     }
 
