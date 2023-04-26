@@ -10,6 +10,7 @@
 
 #include "histogram.h"
 #include "complex.h"
+#include "cstm_impl_vec.h"
 
 #include <windows.h> // UTF-8 encoding for Windows
 #pragma endregion
@@ -89,6 +90,14 @@ void task_2() {
 }
 #pragma endregion
 
+#pragma region TASK 3
+void task_3() {
+    cout << "\n\n\n--- TASK 3 ---\n";
+    
+
+}
+#pragma endregion
+
 int main() {
     SetConsoleOutputCP(CP_UTF8);
 
@@ -99,6 +108,7 @@ int main() {
 
     task_1();
     task_2();
+    task_3();
 
     return 0;
 }
