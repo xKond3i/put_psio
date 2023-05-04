@@ -13,8 +13,8 @@ public:
 
     friend std::ostream & operator << (std::ostream & str, const ComplexNumber & c) {
         if (c.re_ != 0 || c.im_ == 0) str << c.re_;
-        if (c.im_ != 0 && c.re_ != 0) str << (c.im_ > 0 ? " + " : " - ") << std::abs(c.im_) << "i";
-        else str << c.im_ << "i";
+        if (c.re_ != 0 && c.im_ != 0) str << (c.im_ >= 0 ? " + " : " - ") << std::abs(c.im_) << "i";
+        if (c.re_ == 0 && c.im_ != 0) str << c.im_ << "i";
         return str;
     }
 
