@@ -1,3 +1,7 @@
 # ignore files with `.exe` extension
 *.exe
 *.html
+
+# don't ignore debug builds
+!./lab_09/lab_09_1/debug build/lab_09.exe
+!./lab_09/lab_09_2/debug build/lab_09.exe
