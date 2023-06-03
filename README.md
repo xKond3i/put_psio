@@ -1,3 +1,3 @@
-# 🎓 Poznan University Of Technology (Politechnika Poznańska)
-## Semestr II \ Programowanie Strukturalne i Obiektowe
-Repozytorium z rozwiązaniami do zadań z przedmiotu **PSiO**.
+**Poznan University of Technology 🎓** \
+2023, 2nd Semester \
+*Structural and Object-Oriented Programming*
